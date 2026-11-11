@@ -113,7 +113,7 @@ class App():
             command=lambda:
             {
                 self.insertar_coches_controller(),
-            
+                self.insertar_coches_view()
             }
         ).pack(pady=10)
 
@@ -142,7 +142,7 @@ class App():
             command=lambda:
             {
                 self.eliminar_coches_controller(),
-          
+                self.eliminar_coches_view()
             }
         ).pack(pady=10)
 
@@ -195,7 +195,7 @@ class App():
             command=lambda:
             {
                 self.modificar_coches_controller(),
-          
+                self.modificar_coches_view()
             }
         ).pack(pady=10)
 
