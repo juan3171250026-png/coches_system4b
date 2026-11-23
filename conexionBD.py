@@ -1,4 +1,5 @@
 import mysql.connector
+from tkinter import messagebox
 
 try:
     conexion=mysql.connector.connect(
@@ -10,5 +11,5 @@ try:
     cursor=conexion.cursor(buffered=True)
     
 except:
-    print(f"... ¡Por el momento no es posible conectarse con la base de datosintentelo mas tarde! ...")
+    messagebox.showerror(title="Error de conexión", message="... ¡Por el momento no es posible conectarse con la base de datos intentelo mas tarde! ...")
     

@@ -42,81 +42,98 @@ class App:
         self.borrarPantalla()
         self.barraMenu()
         tipo="Coches"
-        Label(self.ventana,text=f"\n...::: menu de {tipo} :::... \n")
-        Button(self.ventana,text="1.- Agregar",command=self.insertar_view).pack(pady=5)
-        Button(self.ventana,text="2.- Borra",command=self.eliminar_view).pack(pady=5)
-        Button(self.ventana,text="3.- Modificar",command=self.modificar_view).pack(pady=5)
-        Button(self.ventana,text="4.- Mostrar",command=self.consultar_view).pack(pady=5)
-        Button(self.ventana,text="5.- Salir",command=self.main).pack(pady=5)
+        Label(self.ventana,text=f"\n...::: menu de {tipo} :::... \n").pack(pady=10)
+        self.frame1=Frame(self.ventana)
+        self.frame1.pack(pady=10)
+        Button(self.frame1,text="Agregar",width=10,height=3,command=self.insertar_view).grid(row=0,column=0,pady=5,padx=5,sticky="e")
+        Button(self.frame1,text="Borrar",width=10,height=3,command=self.eliminar_view).grid(row=0,column=1,pady=5,padx=5,sticky="e")
+        Button(self.frame1,text="Modificar",width=10,height=3,command=self.modificar_view).grid(row=1,column=0,pady=5,padx=5,sticky="e")
+        Button(self.frame1,text="Mostrar",width=10,height=3,command=self.consultar_view).grid(row=1,column=1,pady=5,padx=5,sticky="e")
+        Button(self.frame1,text="Salir",width=10,height=3,command=self.main).grid(row=2,column=0,columnspan=2,pady=5,padx=5)
         
     def main (self):
         self.borrarPantalla()
         self.barraMenu()
         Label(self.ventana,text="\n...::: M E N U   P R I N C I P A L :::...").pack(pady=10)
-        Button(self.ventana,text="1.- Coches",command=self.menu_acciones).pack(pady=5)
-        Button(self.ventana,text="2.- Salir",command=self.ventana.quit).pack(pady=5)
+        self.frame1=Frame(self.ventana)
+        self.frame1.pack(pady=10)
+        Button(self.frame1,text="1.- Coches",width=10,height=3,command=self.menu_acciones).grid(row=0,column=0,pady=5,padx=5,sticky="e")
+        Button(self.frame1,text="2.- Salir",width=10,height=3,command=self.ventana.quit).grid(row=1,column=0,pady=5,padx=5,sticky="w")
 
     def insertar_view(self):
         self.borrarPantalla()
         self.barraMenu()
         Label(self.ventana,text="...Ingresar los datos de Coche").pack(pady=10)
-        Label(self.ventana,text="Marca").pack(pady=5)
-        self._marca=Entry(self.ventana)
+        
+        self.frame1=Frame(self.ventana)
+        self.frame1.pack(pady=10)
+        
+        
+        Label(self.frame1,text="Marca").grid(row=0,column=0,pady=5,padx=5,sticky="e")
+        self._marca=Entry(self.frame1)
         self._marca.focus()
-        self._marca.pack(pady=5)
+        self._marca.grid(row=0,column=1,pady=5,padx=5,sticky="w")
         
-        Label(self.ventana,text="Color").pack(pady=5)
-        self._color=Entry(self.ventana)
-        self._color.pack(pady=5)
+        Label(self.frame1,text="Color").grid(row=1,column=0,pady=5,padx=5,sticky="e")
+        self._color=Entry(self.frame1)
+        self._color.grid(row=1,column=1,pady=5,padx=5,sticky="w")
         
-        Label(self.ventana,text="Modelo").pack(pady=5)
-        self._modelo=Entry(self.ventana)
-        self._modelo.pack(pady=5)
+        Label(self.frame1,text="Modelo").grid(row=2,column=0,pady=5,padx=5,sticky="e")
+        self._modelo=Entry(self.frame1)
+        self._modelo.grid(row=2,column=1,pady=5,padx=5,sticky="w")
         
-        Label(self.ventana,text="Velocidad").pack(pady=5)
-        self._velocidad=Entry(self.ventana)
-        self._velocidad.pack(pady=5)
+        Label(self.frame1,text="Velocidad").grid(row=3,column=0,pady=5,padx=5,sticky="e")
+        self._velocidad=Entry(self.frame1)
+        self._velocidad.grid(row=3,column=1,pady=5,padx=5,sticky="w")
         
-        Label(self.ventana,text="Potencia").pack(pady=5)
-        self._potencia=Entry(self.ventana)
-        self._potencia.pack(pady=5)
+        Label(self.frame1,text="Potencia").grid(row=4,column=0,pady=5,padx=5,sticky="e")
+        self._potencia=Entry(self.frame1)
+        self._potencia.grid(row=4,column=1,pady=5,padx=5,sticky="w")
         
-        Label(self.ventana,text="Asientos").pack(pady=5)
-        self._asientos=Entry(self.ventana)
-        self._asientos.pack(pady=5)
+        Label(self.frame1,text="Asientos").grid(row=5,column=0,pady=5,padx=5,sticky="e")
+        self._asientos=Entry(self.frame1)
+        self._asientos.grid(row=5,column=1,pady=5,padx=5,sticky="w")
         
-        Button(self.ventana,text="Guardar",command=lambda:(self.insertar_controller(),self.insertar_view())).pack(pady=10)
-        Button(self.ventana,text="Regresar",command=self.menu_acciones).pack(pady=10)
+        Button(self.frame1,text="Guardar",command=lambda:(self.insertar_controller(),self.insertar_view())).grid(row=6,column=0,pady=10,padx=5,sticky="e")
+        Button(self.frame1,text="Regresar",command=self.menu_acciones).grid(row=6,column=1,pady=10,padx=5,sticky="e")
         
     def eliminar_view(self):
         self.borrarPantalla()
         self.barraMenu()
-        Label(self.ventana,text="...Ingresar el ID del Coche a eliminar").pack(pady=10)
+        self.frame1=Frame(self.ventana)
+        self.frame1.pack(pady=10)
+        Label(self.frame1,text="...Ingresar el ID del Coche a eliminar").grid(row=0,column=0,columnspan=2,pady=10)
+        self.frame1=Frame(self.ventana)
+        self.frame1.pack(pady=10)
             
-        Label(self.ventana,text="ID").pack(pady=5)
-        self.id=Entry(self.ventana)
-        self.id.pack(pady=5)
+        Label(self.frame1,text="ID").grid(row=0,column=0,pady=5,padx=5,sticky="e")
+        self.id=Entry(self.frame1)
+        self.id.grid(row=0,column=1,pady=5,padx=5,sticky="w")
         
-        self.btn_buscar=Button(self.ventana,text="Buscar",command=lambda:self.buscar_controller("eliminar"))
-        self.btn_buscar.pack(pady=10)
+        self.btn_buscar=Button(self.frame1,text="Buscar",command=lambda:self.buscar_controller("eliminar"))
+        self.btn_buscar.grid(row=1,column=0,pady=10,padx=5,sticky="e")
             
             
-        self.btn_eliminar=Button(self.ventana,text="Eliminar",state="disabled",command=lambda:{self.eliminar_controller(),self.eliminar_view()})
-        self.btn_eliminar.pack(pady=10)
-        Button(self.ventana,text="Regresar",command=self.menu_acciones).pack(pady=10)  
+        self.btn_eliminar=Button(self.frame1,text="Eliminar",state="disabled",command=lambda:{self.eliminar_controller(),self.eliminar_view()})
+        self.btn_eliminar.grid(row=1,column=1,pady=10,padx=5,sticky="e")
+        Button(self.frame1,text="Regresar",command=self.menu_acciones).grid(row=1,column=0,columnspan=2,pady=10,padx=5,sticky="s")  
         
     def modificar_view(self):
             self.borrarPantalla()
             self.barraMenu()
             Label(self.ventana,text="...Ingresar el ID del Coche a modificar").pack(pady=10)
-                    
-            Label(self.ventana,text="ID").pack(pady=5)
-            self.id=Entry(self.ventana)
-            self.id.focus()
-            self.id.pack(pady=5)
             
-            self.btn_buscar=Button(self.ventana,text="Buscar",command=lambda:self.buscar_controller("modificar"))
-            self.btn_buscar.pack(pady=10)
+            self.frame1=Frame(self.ventana)
+            self.frame1.pack(pady=10)
+                 
+                    
+            Label(self.frame1,text="ID").grid(row=0,column=0,pady=5,padx=5,sticky="e")
+            self.id=Entry(self.frame1)
+            self.id.focus()
+            self.id.grid(row=0,column=1,pady=5,padx=5,sticky="w")
+            
+            self.btn_buscar=Button(self.frame1,text="Buscar",command=lambda:self.buscar_controller("modificar"))
+            self.btn_buscar.grid(row=1,column=0,pady=10,columnspan=2,padx=5)
             
             # Variables asociadas a los campos
             self.var_marca=StringVar()
@@ -125,30 +142,33 @@ class App:
             self.var_velocidad=StringVar()
             self.var_potencia=StringVar()
             self.var_asientos=StringVar()
+            
+            self.frame2=Frame(self.ventana)
+            self.frame2.pack(pady=10)
 
-            Label(self.ventana,text="Nueva Marca").pack(pady=5)
-            self._marca=Entry(self.ventana,textvariable=self.var_marca)
-            self._marca.pack(pady=5)
+            Label(self.frame2,text="Nueva Marca").grid(row=0,column=0,pady=5,padx=5,sticky="e")
+            self._marca=Entry(self.frame2,textvariable=self.var_marca)
+            self._marca.grid(row=0,column=1,pady=5,padx=5,sticky="w")
                     
-            Label(self.ventana,text="Nuevo Color").pack(pady=5)
-            self._color=Entry(self.ventana,textvariable=self.var_color)
-            self._color.pack(pady=5)
+            Label(self.frame2,text="Nuevo Color").grid(row=1,column=0,pady=5,padx=5,sticky="e")
+            self._color=Entry(self.frame2,textvariable=self.var_color)
+            self._color.grid(row=1,column=1,pady=5,padx=5,sticky="w")
                     
-            Label(self.ventana,text="Nuevo Modelo").pack(pady=5)
-            self._modelo=Entry(self.ventana,textvariable=self.var_modelo)
-            self._modelo.pack(pady=5)
+            Label(self.frame2,text="Nuevo Modelo").grid(row=2,column=0,pady=5,padx=5,sticky="e")
+            self._modelo=Entry(self.frame2,textvariable=self.var_modelo)
+            self._modelo.grid(row=2,column=1,pady=5,padx=5,sticky="w")
                     
-            Label(self.ventana,text="Nuevo Velocidad").pack(pady=5)
-            self._velocidad=Entry(self.ventana,textvariable=self.var_velocidad)
-            self._velocidad.pack(pady=5)
+            Label(self.frame2,text="Nuevo Velocidad").grid(row=3,column=0,pady=5,padx=5,sticky="e")
+            self._velocidad=Entry(self.frame2,textvariable=self.var_velocidad)
+            self._velocidad.grid(row=3,column=1,pady=5,padx=5,sticky="w")
                     
-            Label(self.ventana,text="Nueva Potencia").pack(pady=5)
-            self._potencia=Entry(self.ventana,textvariable=self.var_potencia)
-            self._potencia.pack(pady=5)
+            Label(self.frame2,text="Nueva Potencia").grid(row=4,column=0,pady=5,padx=5,sticky="e")
+            self._potencia=Entry(self.frame2,textvariable=self.var_potencia)
+            self._potencia.grid(row=4,column=1,pady=5,padx=5,sticky="w")
                     
-            Label(self.ventana,text="Nuevos Asientos").pack(pady=5)
-            self._asientos=Entry(self.ventana,textvariable=self.var_asientos)
-            self._asientos.pack(pady=5)
+            Label(self.frame2,text="Nuevos Asientos").grid(row=5,column=0,pady=5,padx=5,sticky="e")
+            self._asientos=Entry(self.frame2,textvariable=self.var_asientos)
+            self._asientos.grid(row=5,column=1,pady=5,padx=5,sticky="w")
                     
             self.btn_modificar=Button(self.ventana,text="Guardar",state="disabled",command=lambda:(self.modificar_controller(),self.modificar_view()))
             self.btn_modificar.pack(pady=10)
