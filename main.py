@@ -1,6 +1,6 @@
 from coches import coches
 from tkinter import *
-from tkinter import messagebox, StringVar
+from tkinter import messagebox, StringVar, ttk
 
 class App:
     def __init__(self,ventana):
@@ -179,13 +179,34 @@ class App:
         self.borrarPantalla()
         self.barraMenu()
         Label(self.ventana,text="::: Consultar los coches :::").pack(pady=10)
-        filas=""
-        filas=self.consultar_controller(filas)
-        Label(self.ventana,text=f"{'No.':<20}{'ID':<20}{'Marca':<20}{'Color':<20}{'Modelo':<20}{'Velocidad':<20}{'Potencia':<20}{'Asientos':<20}").pack(pady=5)
-        Label(self.ventana,text=f"-"*100).pack(pady=5)
-        Label(self.ventana,text=f"{filas}").pack(pady=5)
-        Label(self.ventana,text=f"-"*100).pack(pady=5)
+        
+        # Tabla
+        self.tree =ttk.Treeview(self.ventana, columns=("ID", "Marca", "Color", "Modelo","Velocidad","Potencia","Asientos"), show="headings")
+        self.tree.heading("ID", text="ID")
+        self.tree.heading("Marca", text="Marca")
+        self.tree.heading("Color", text="Color")
+        self.tree.heading("Modelo", text="Modelo")
+        self.tree.heading("Velocidad", text="Velocidad")
+        self.tree.heading("Potencia", text="Potencia")
+        self.tree.heading("Asientos", text="Asientos")
+        self.tree.pack(fill="both", expand=False)
+        
+        #Colocar los datos en la tabla
+        self.mostrar_coches()
+        
+        
+        
+        
+        
         Button(self.ventana,text="Regresar",command=self.menu_acciones).pack(pady=5)
+        
+        #filas=""
+        #filas=self.consultar_controller(filas)
+        #Label(self.ventana,text=f"{'No.':<20}{'ID':<20}{'Marca':<20}{'Color':<20}{'Modelo':<20}{'Velocidad':<20}{'Potencia':<20}{'Asientos':<20}").pack(pady=5)
+        #Label(self.ventana,text=f"-"*100).pack(pady=5)
+        #Label(self.ventana,text=f"{filas}").pack(pady=5)
+        #Label(self.ventana,text=f"-"*100).pack(pady=5)
+        
         
     def cambiar_estado_btn(self,estado,tipo_accion):
         if estado:
@@ -266,7 +287,14 @@ class App:
             
         else:
             messagebox.showerror(title="...¡ verifique por favor !...",message=f"...¡El registro no fue encontrado, no es posible {tipo_accion}!...")
-            self.cambiar_estado_btn(False,tipo_accion)
+            self.cambiar_estado_btn(False,tipo_accion)      
+
+    def mostrar_coches(self):
+        for row in self.tree.get_children():
+            self.tree.delete(row)
+        for row in coches.Coches.consultar():
+            self.tree.insert("", "end", values=row)
+
 
 if __name__=="__main__":
     ventana=Tk()
