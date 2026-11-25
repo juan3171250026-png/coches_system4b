@@ -139,7 +139,7 @@ class App:
         if len(registros)>0:
             num_coches=1
             for fila in registros:
-                filas=filas+f"\n{num_coches:<20}{fila[0]:<20}{fila[1]:<20}{fila[2]:<20}{fila[3]:<20}{fila[4]:<20}{fila[5]:<20}\{fila[6]:<20}"
+                filas=filas+f"\n{num_coches:<20}{fila[0]:<20}{fila[1]:<20}{fila[2]:<20}{fila[3]:<20}{fila[4]:<20}{fila[5]:<20}{fila[6]:<20}"
                 num_coches+=1
         else:
                 print("\n\n\t ¡No existen datos que mostrarpor el momento ...!")
