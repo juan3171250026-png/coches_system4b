@@ -1,6 +1,9 @@
 import mysql.connector
 from tkinter import messagebox
 
+conexion=None
+cursor=None
+
 try:
     conexion=mysql.connector.connect(
         host="127.0.0.1",
